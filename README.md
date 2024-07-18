@@ -1,3 +1,26 @@
+### Note from Developer
+
+I chose to use the `jsonb` type in PostgreSQL for the custom fields instead of the traditional Entity-Attribute-Value (EAV) model. Here are the pros and cons of this approach:
+
+#### Pros:
+- Fewer joins and tables than EAV, potentially improving performance for retrieval and storage.
+- Flexibility with jsonb, allowing it to act as extra data on the building.
+- Clean and straightforward schema.
+#### Cons:
+- Referential integrity is lost with any NoSQL approach, relying on JSON validators and application layer logic to ensure data integrity.
+- Querying JSONB can be complex (e.g., flattening the data in SQL to match API response requirements) and may increase cognitive load for other developers.
+I've included comments in the code about performance and suggested changes beyond the requirements.
+
+I also intended to move logic out of the controller and into use cases but was constrained by time. I can discuss this in person. For example, I'm not a fan of `accepts_nested_attributes_for :address`, as it relies too much on "Rails magic." I prefer approaches that align more closely with the database operations to avoid unexpected queries.
+
+#### Code Structure:
+- `adapters/*` - Converts one format into another.
+- `models/concerns/*` - Contains reusable modules to keep models clean.
+- `queries/*` - Handles complex queries that can be shared or merged across ActiveRecord (outside of scopes defined on models).
+- `validators/*` - Contains complex validation logic that can be shared across models or used outside of models, such as in use cases or service objects.
+
+
+
 # Buildings API
 
 ## Overview
