@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "patternProperties": {
+    ".+": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["freeform", "number", "enum"] }
+      },
+      "required": ["type"],
+      "if": {
+        "properties": {
+          "type": { "const": "enum" }
+        }
+      },
+      "then": {
+        "required": ["options"],
+        "properties": {
+          "options": { "type": "array" }
+        },
+        "additionalProperties": false
+      },
+      "else": {
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
