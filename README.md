@@ -13,8 +13,8 @@ Ensure you have the following installed on your local machine:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/my_rails_api.git
-cd my_rails_api
+git clone https://github.com/cblokker/buildings-api.git
+cd buildings-api
 ```
 
 ### 2. Install Ruby Dependencies
